@@ -1,0 +1,87 @@
+--- -	2021-10-05 12:03:38.637281486 +0300
++++ /home/razvan/AI/search/search.py	2021-10-05 09:40:30.506717278 +0300
+@@ -87,17 +87,81 @@
+     print "Start's successors:", problem.getSuccessors(problem.getStartState())
+     
+     "*** YOUR CODE HERE ***"
+-    util.raiseNotDefined()
++    from util import Stack
++    from game import Directions
++    myStack = Stack()
++    myStack.push(((problem.getStartState()), [] ))
++    visited = []
++    while not myStack.isEmpty():
++        possibleMoves = problem.getSuccessors
++        (state,move) = myStack.pop()
++        if(problem.isGoalState(state)):
++            break
++        successors=problem.getSuccessors(state)
++        for i in successors:
++            if (i[0] not in visited):
++                visited.append(i[0])
++                myStack.push((i[0],move+[i[1]]))
++    return move
++
++def randomAgent(problem):
++    import random
++    start=problem.getStartState()
++    moveSet = []
++    while not problem.isGoalState(start):
++       rand = random.choice(problem.getSuccessors)
++       moveSet.append(rand[1])
++       start = rand[0]
++    return moveSet
+ 
+ def breadthFirstSearch(problem):
+     """Search the shallowest nodes in the search tree first."""
++    print
++    "Start:", problem.getStartState()
++    print
++    "Is the start a goal?", problem.isGoalState(problem.getStartState())
++    print
++    "Start's successors:", problem.getSuccessors(problem.getStartState())
++
+     "*** YOUR CODE HERE ***"
+-    util.raiseNotDefined()
++    from util import Queue
++    from game import Directions
++    myQueue = Queue()
++    myQueue.push(((problem.getStartState()), []))
++    visited = []
++    while not myQueue.isEmpty():
++        possibleMoves = problem.getSuccessors
++        (state, move) = myQueue.pop()
++        if (problem.isGoalState(state)):
++            break
++        successors = problem.getSuccessors(state)
++        for i in successors:
++            if (i[0] not in visited):
++                visited.append(i[0])
++                myQueue.push((i[0], move + [i[1]]))
++    return move
++
+ 
+ def uniformCostSearch(problem):
+     """Search the node of least total cost first."""
+     "*** YOUR CODE HERE ***"
+-    util.raiseNotDefined()
++    from util import PriorityQueue
++    from game import Directions
++    myQueue = PriorityQueue()
++    myQueue.push((problem.getStartState(),[]),0)
++    visited = []
++    while not myQueue.isEmpty():
++        possibleMoves = problem.getSuccessors
++        (state, move) = myQueue.pop()
++        if (problem.isGoalState(state)):
++            break
++        successors = problem.getSuccessors(state)
++        for i in successors:
++            if (i[0] not in visited):
++                visited.append(i[0])
++                myQueue.push((i[0], move + [i[1]]),i[2])
++    return move
++
+ 
+ def nullHeuristic(state, problem=None):
+     """

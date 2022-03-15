@@ -1,0 +1,32 @@
+Results of the algorithms based on a few different maps 
+!The maps will test a few cases of the algorithms to see which one performs better 
+The results are also dependent on the order of the movements the algorithm considers.  In this case, the move priority is left,
+
+Map1: DifficultDFS (map with just walls)
+DFS:  total cost: 454
+      nodes expanded: 455
+      
+BFS:  total cost: 46
+      nodes expanded: 454
+      
+Rand:  total cost: 3550
+       nodes expanded: 3550
+       obs: number of nodes expanded and total cost of the solution ar the same,   highly variable nr of total moves but on average a lot worse than the search algorithms
+Astar:  total cost: 46
+        nodes expanded: 454
+        
+Map2: DifficultBFS  
+DFS   250,251
+BFS   150,253
+Rand  60932,60932
+  Rand performs even worse when it has fewer options to go to (it has to consider a lot of 50/50 to get to the end)
+  
+Map3: newGrid
+DFS:34,87
+BFS:24,127
+Rand:1084,1084
+  
+
+Global obs: BFS is optimal and will expand the most ammount of nodes in order to find the best solution (higher computation time but the solution is the best one)
+            DFS will try to reduce the nr of expanded nodes and find a possible solution 
+            Random is the only alg that gives different solutions for the same problem.
